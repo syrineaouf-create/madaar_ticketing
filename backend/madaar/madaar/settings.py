@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'cloudinary_storage',
     'tickets',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -136,7 +137,11 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+    'DEFAULT_FILTER_BACKENDS': [  # ← parenthèses → crochets OK
+        'django_filters.rest_framework.DjangoFilterBackend',  # ✅ "framework" + "Backend"
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter'
+    ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
 }
-
