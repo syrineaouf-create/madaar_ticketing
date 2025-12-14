@@ -9,8 +9,11 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
-
+import os
 from pathlib import Path
+FIRST_ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME', 'admin')
+FIRST_ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'admin@example.com')
+FIRST_ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,8 +46,8 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'tickets',
     'django_filters',
-    
-]
+]  
+
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -134,18 +137,19 @@ CLOUDINARY = {
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
-    'DEFAULT_FILTER_BACKENDS': [  # ← parenthèses → crochets OK
-        'django_filters.rest_framework.DjangoFilterBackend',  # ✅ "framework" + "Backend"
+    'DEFAULT_FILTER_BACKENDS': [  
+        'django_filters.rest_framework.DjangoFilterBackend', 
         'rest_framework.filters.SearchFilter',
         'rest_framework.filters.OrderingFilter'
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
 }
-# à la place de CORS_ALLOWED_ORIGINS
+
 CORS_ALLOW_ALL_ORIGINS = True
 
