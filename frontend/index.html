@@ -4,10 +4,61 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend</title>
+    <meta name="description" content="Internal Ticketing System - Submit and manage support tickets efficiently" />
+    <meta name="keywords" content="ticketing, support, helpdesk, customer service" />
+    <meta name="author" content="Madaar Solutions" />
+    <meta name="theme-color" content="#1976d2" />
+    
+    <meta property="og:title" content="Ticketing System - Madaar Solutions" />
+    <meta property="og:description" content="Submit and manage support tickets" />
+    <meta property="og:type" content="website" />
+    
+    <title>Ticketing System - Madaar Solutions</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
     <div id="root"></div>
+    
     <script type="module" src="/src/main.jsx"></script>
+    
+    <script>
+      (function(d,t) {
+        var BASE_URL = "https://app.chatwoot.com";
+        var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+        g.src = BASE_URL + "/packs/js/sdk.js";
+        g.defer = true;
+        g.async = true;
+        s.parentNode.insertBefore(g,s);
+        g.onload = function(){
+          window.chatwootSDK.run({
+            websiteToken: '2tAJ9LDd4toAQ4Q35sJQpdgR',
+            baseUrl: BASE_URL
+          })
+        }
+      })(document,"script");
+    </script>
+    
+    <noscript>
+      <div style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #f44336;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        z-index: 9999;
+      ">
+        ⚠️ You need to enable JavaScript to run this application.
+      </div>
+    </noscript>
   </body>
 </html>
